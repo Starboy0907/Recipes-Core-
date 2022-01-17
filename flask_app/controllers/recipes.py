@@ -45,7 +45,7 @@ def edit():
         # redirect to the route where the burger form is rendered.
         return redirect('/recipe/edit/<int:id>')
     Recipe.update(request.form)
-    return redirect('/recipe/<int:id>')
+    return redirect('/dashboard')
 
 @app.route('/recipes/edit/<int:id>')
 def update(id):
@@ -54,11 +54,14 @@ def update(id):
     }
     recipe = Recipe.get_one(data)
     recipes = Recipe.update
-    return render_template('edit_recipe.html', one_recipe = recipe, recipes=recipes,  id=id)
+    return render_template('edit_recipe.html',one_recipe = recipe, recipes=recipes)
 
 @app.route('/delete/<int:id>')
 def delete(id):
-    recipes = Recipe.delete()
+    data = {
+        "id" : id
+    }
+    Recipe.delete(data)
     return redirect('/dashboard')
 
 

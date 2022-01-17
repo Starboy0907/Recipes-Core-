@@ -70,7 +70,7 @@ class Recipe:
 
     @classmethod
     def update(cls,data):
-        query = "UPDATE recipes SET name = %(name)s, under_30_min = %(under_30_min)s, description = %(description)s, instructions = %(instructions)s, created_at = NOW(), updated_at = NOW(), users_id = %(users_id)s WHERE id = %(id)s;"
+        query = "UPDATE recipes SET name = %(name)s, under_30_min = %(under_30_min)s, description = %(description)s, instructions = %(instructions)s, created_at = NOW(), updated_at = NOW() WHERE id = %(id)s;"
         return connectToMySQL(cls.db_name).query_db(query, data)
 
 
