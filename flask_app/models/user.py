@@ -3,7 +3,7 @@ from flask import flash
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
 class User:
-    db_name = 'recipe_schema'
+    db_name = 'private_wall'
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -12,7 +12,6 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.recipes = []
 
     @staticmethod
     def validate(user):
@@ -37,7 +36,6 @@ class User:
         if len(user['password']) < 6:
             flash("Password must be at least 6 characters long")
             isValid=False 
-
         if user['password'] != user['confirm_password']:
             isValid = False
             flash("Your Passwords don't match")
@@ -80,6 +78,22 @@ class User:
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     @classmethod
-    def get_users_with_recipes(cls, data):
-        query = "SELECT * from users LEFT JOIN recipes ON recipes.user_id = users.id WHERE users.id = %(id)s;"
-        results = connectToMySQL
+    def get_users_with_messages(cls, data):
+        query = "SELECT * from users LEFT JOIN messages ON messages.user_id = users.id WHERE users.id = %(id)s;"
+        return connectToMySQL(cls.db_name).query_db(query,data)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        

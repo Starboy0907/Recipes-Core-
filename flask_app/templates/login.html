@@ -8,6 +8,14 @@
     <title>Authors</title>
 </head>
 <body>
+    <style>
+        body {
+            background-image: url('../static/img/login.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;  
+            background-size: cover;
+        }
+    </style>
     <div class="d-flex flex-wrap justify-content-around">
         <form action="/register" method="post" class="col-6 p-3 bg-dark text-light">
             {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
